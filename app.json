@@ -1,10 +1,10 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/my/my"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "机器之心",
     "navigationBarTextStyle":"black",
@@ -22,7 +22,7 @@
       {
         "iconPath": "images/my.png",
         "selectedIconPath": "images/my-active.png",
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/my/my",
         "text": "我的"
       }
     ]

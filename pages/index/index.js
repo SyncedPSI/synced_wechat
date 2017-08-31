@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
-var getData = function(self) {
+var getData = function(self, isAdd=true) {
   const pageInfo = self.data.articles.pageInfo;
   if (!pageInfo.hasNextPage) return;
 
@@ -68,7 +68,9 @@ var getData = function(self) {
     // },
     success: function (res) {
       let articles = res.data.data.articles;
-      articles.edges = articles.edges.concat(self.data.articles.edges);
+      if (isAdd) {
+        articles.edges = articles.edges.concat(self.data.articles.edges);
+      }
 
       self.setData({ articles: articles })
       wx.stopPullDownRefresh();
@@ -118,8 +120,7 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     console.log("下拉刷新");
-    this.setData({ articles: { edges: [], pageInfo: {endCursor: '', hasNextPage: true} } });
-    getData(this);
+    getData(this, false);
   },
 
   onReachBottom: function() {
