@@ -1,10 +1,38 @@
 <!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view>
+  <!-- <scroll-view scroll-y="true" enable-back-to-top="true" bindscrolltolower="fetchMore" style="height: {{scrollHeight}}px"> -->
+    <navigator class="article" url="">
+      <view class="article__cover"
+        style="background-image: url(http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg)">
+      </view>
+        <view class="article__info">
+        <view class="article__categories">
+          <text class="category__label">深度</text>
+        </view>
+        <view class=" article__title">吴恩达Deeplearning.ai课程学习全体验：深度学习必备课程</view>
+        <text class="article__author" href="/users/17cadd72-a0a0-4bfc-9814-151e3b06f6c4">By 路雪</text>
+      </view> 
+    </navigator>
+
+    <view class="article-list">
+      <view class="article-inline" wx:for="{{articles.edges}}" wx:key="unique">
+        <navigator class="article-inline__cover-container">
+          <view class="article-inline__cover"
+          style="background-image: url(http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg)"></view>
+        </navigator>
+        <view class="article-inline__info">
+          <view class="article__categories">
+            <text class="category__label" wx:for="{{item.node.categories}}" wx:for-item="category" wx:key="unique">{{category.title}}</text>
+          </view>
+          <navigator class="article-inline__title">{{item.node.title}}</navigator>
+          <view class="article-inline__bottom">
+            <text>{{item.node.author.name}}</text>
+            <text>{{item.node.published_at}}</text>
+          </view>
+        </view>
+      </view>
+
+    </view> 
+  <!-- </scroll-view> -->
 </view>
+

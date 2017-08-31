@@ -6,7 +6,25 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "机器之心",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "selectedColor": "#3FB836",
+    "list": [
+      {
+        "iconPath": "images/article.png",
+        "selectedIconPath": "images/article-active.png",
+        "pagePath": "pages/index/index",
+        "text": "文章"
+      },
+      {
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my-active.png",
+        "pagePath": "pages/logs/logs",
+        "text": "我的"
+      }
+    ]
   }
 }
