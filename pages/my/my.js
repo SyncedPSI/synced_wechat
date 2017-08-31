@@ -7,12 +7,9 @@ Page({
     motto: 'Hello World'
   },
   onLoad: function () {
-    wx.stopPullDownRefresh();
-    var self = this;
-    app.getUserInfo(function (userInfo) {
-      self.setData({
-        userInfo: userInfo
-      })
+    this.setData({
+      userInfo: app.globalData.userInfo
     });
+   
   }
 })
