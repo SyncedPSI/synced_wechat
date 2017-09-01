@@ -3,79 +3,51 @@
 var app = getApp()
 var WxSearch = require('../../lib/wxSearch/wxSearch.js')
 
-var getData = function(self, isAdd=true) {
+var getData = function (self, keywords) {
   const pageInfo = self.data.articles.pageInfo;
   if (!pageInfo.hasNextPage) return;
 
   wx.request({
-    url: "https://easy-mock.com/mock/59a799074006183e48edf7e8/example/upload",
+    url: "https://jiqizhixin.com/graphql",
     method: "POST",
     data: {
-      operationName: "ArticleList",
-      query: `query ArticleList($count: Int, $cursor: String, $withContent: Boolean!, $withCategories: Boolean!, $exclude_banners: Boolean) {
-                  articles(first: $count, after: $cursor, exclude_banners: $exclude_banners) {
-                    edges {
-                      node {
-                        ...ArticleInfo
-                        __typename
-                      }
-                      __typename
+      operationName: "searchArticle",
+      query: `query searchArticle (
+                $keywords: String!,
+                $count: Int,
+                $cursor: String
+              ) {
+                elastic_search(first: $count, after: $cursor, keywords: $keywords, filter_tags: []) {
+                  edges {
+                    node {
+                      id
+                      cover_image_url
+                      title
                     }
-                    pageInfo {
-                      ...PageInfo
-                      __typename
-                    }
-                    __typename
+                  }
+                  pageInfo {
+                    hasNextPage
+                    endCursor
                   }
                 }
-
-                fragment ArticleInfo on Article {
-                  id
-                  author {
-                    id
-                    name
-                    __typename
-                  }
-                  categories @include(if: $withCategories) {
-                    title
-                    path
-                    __typename
-                  }
-                  cover_image_url
-                  description
-                  published_at
-                  content @include(if: $withContent)
-                  title
-                  path
-                  __typename
-                }
-
-                fragment PageInfo on PageInfo {
-                  endCursor
-                  hasNextPage
-                  __typename
-                }
+              }
                 `,
       variables: {
-        cursor: "",
         count: 8,
         cursor: self.data.articles.pageInfo.endCursor,
-        exclude_banners: true,
-        withCategories: true,
-        withContent: false
+        keywords
       }
     },
-    // header: {
-    //   'content-type': 'application/json'
-    // },
+    header: {
+      'content-type': 'application/json'
+    },
     success: function (res) {
-      let articles = res.data.data.articles;
-      if (isAdd) {
-        articles.edges = articles.edges.concat(self.data.articles.edges);
-      }
+      console.log(res)
+      let articles = res.data.data.elastic_search;
+      articles.edges = articles.edges.concat(self.data.articles.edges);
 
-      self.setData({ articles: articles })
-      wx.stopPullDownRefresh();
+      self.setData({ articles: articles });
+      console.log(self.data.articles)
     },
     fail: function (err) {
       console.log(err)
@@ -84,7 +56,16 @@ var getData = function(self, isAdd=true) {
 }
 Page({
   data: {
-    
+    articles: {
+      edges: [],
+      pageInfo: {
+        endCursor: '',
+        hasNextPage: true
+      }
+    },
+    wxSearchData: {
+      value: ''
+    }
   },
 
   onLoad: function () {
@@ -93,14 +74,10 @@ Page({
     WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
     WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
   },
-
-  onShow: function () {
-    // getData(this);
-  },
   wxSearchFn: function (e) {
     var that = this;
     // 展示搜索结果
-    console.log("结果",e)
+    getData(that, that.data.wxSearchData.value);
     WxSearch.wxSearchAddHisKey(that);
   },
   wxSearchInput: function (e) {
@@ -109,7 +86,6 @@ Page({
     // 显示相关词
     console.log("显示关键词")
     WxSearch.initMindKeys(['weappdev.com', 'aaa', 'aaaaa', 'aaaa']);
-
     WxSearch.wxSearchInput(e, that);
   },
   wxSerchFocus: function (e) {

@@ -15,15 +15,12 @@ var getData = function(self, hasPost=false, isAdd=true) {
                     edges {
                       node {
                         ...ArticleInfo
-                        __typename
                       }
-                      __typename
                     }
                     pageInfo {
-                      ...PageInfo
-                      __typename
+                      endCursor
+                      hasNextPage
                     }
-                    __typename
                   }
                 }
 
@@ -32,12 +29,10 @@ var getData = function(self, hasPost=false, isAdd=true) {
                   author {
                     id
                     name
-                    __typename
                   }
                   categories @include(if: $withCategories) {
                     title
                     path
-                    __typename
                   }
                   cover_image_url
                   description
@@ -45,18 +40,10 @@ var getData = function(self, hasPost=false, isAdd=true) {
                   content @include(if: $withContent)
                   title
                   path
-                  __typename
-                }
-
-                fragment PageInfo on PageInfo {
-                  endCursor
-                  hasNextPage
-                  __typename
                 }
                 `,
       variables: {
-        cursor: "",
-        count: 9,
+        count: 8,
         cursor: self.data.articles.pageInfo.endCursor,
         exclude_banners: true,
         withCategories: true,
