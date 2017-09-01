@@ -1,0 +1,17 @@
+/**index.wxss**/
+/* 
+* {
+  box-sizing: border-box;
+} */
+
+.article-detail {
+  padding: 0 10rpx;
+}
+
+.article-detail__title {
+  font-size: 1.8rem;
+}
+
+.article-detail__author {
+  font-weight: bold;
+}
