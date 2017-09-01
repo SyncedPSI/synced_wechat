@@ -67,7 +67,6 @@ var getData = function(self, hasPost=false, isAdd=true) {
       'content-type': 'application/json'
     },
     success: function (res) {
-      console.log(res)
       let articles = res.data.data.articles;
       if (isAdd) {
         articles.edges = articles.edges.concat(self.data.articles.edges);
@@ -115,17 +114,15 @@ Page({
     // });
   },
   onShow: function () {
-    // getData(this);
+    getData(this);
   },
 
   // 下拉刷新
   onPullDownRefresh: function () {
-    console.log("下拉刷新");
     getData(this,true, false);
   },
 
   onReachBottom: function() {
-    console.log("加载更多")
     getData(this);
   }
 })

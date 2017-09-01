@@ -2,11 +2,11 @@
 <import src="../../lib/wxParse/wxParse.wxml"/>
 
 <view class="article-detail">
-  <view class='article-detail__title'>神奇的神经机器翻译：从发展脉络到未来前景（附论文资源）</view>
+  <view class='article-detail__title'>{{article.title}}</view>
   <view class='article-detail__meta'>
     <text>By </text>
-    <text class='article-detail__author'>机器之心</text>
-    <text class="article-detail__publish-date"> | 2017年8月22日 10:55</text>
+    <text class='article-detail__author'>{{article.author.name}}</text>
+    <text class="article-detail__publish-date"> | {{article.published_at}}</text>
   </view>
   <view class="article-detail__content">
     <template is="wxParse" data="{{wxParseData:article_content.nodes}}"/>
