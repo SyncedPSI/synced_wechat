@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/my/my",
-    "pages/article/article"
+    "pages/article/article",
+    "pages/search/search"
   ],
   "window":{
     "backgroundTextStyle":"dark",
@@ -19,6 +20,12 @@
         "selectedIconPath": "images/article-active.png",
         "pagePath": "pages/index/index",
         "text": "文章"
+      },
+      {
+        "iconPath": "images/search.png",
+        "selectedIconPath": "images/search-active.png",
+        "pagePath": "pages/search/search",
+        "text": "搜索"
       },
       {
         "iconPath": "images/my.png",

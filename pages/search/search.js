@@ -1,12 +1,14 @@
 //index.js
 //获取应用实例
 var app = getApp()
-var getData = function(self, hasPost=false, isAdd=true) {
+var WxSearch = require('../../lib/wxSearch/wxSearch.js')
+
+var getData = function(self, isAdd=true) {
   const pageInfo = self.data.articles.pageInfo;
   if (!pageInfo.hasNextPage) return;
 
   wx.request({
-    url: "https://jiqizhixin.com/graphql",
+    url: "https://easy-mock.com/mock/59a799074006183e48edf7e8/example/upload",
     method: "POST",
     data: {
       operationName: "ArticleList",
@@ -56,18 +58,17 @@ var getData = function(self, hasPost=false, isAdd=true) {
                 `,
       variables: {
         cursor: "",
-        count: 9,
+        count: 8,
         cursor: self.data.articles.pageInfo.endCursor,
         exclude_banners: true,
         withCategories: true,
         withContent: false
       }
     },
-    header: {
-      'content-type': 'application/json'
-    },
+    // header: {
+    //   'content-type': 'application/json'
+    // },
     success: function (res) {
-      console.log(res)
       let articles = res.data.data.articles;
       if (isAdd) {
         articles.edges = articles.edges.concat(self.data.articles.edges);
@@ -83,49 +84,62 @@ var getData = function(self, hasPost=false, isAdd=true) {
 }
 Page({
   data: {
-    articlePost: {
-      title: '深度学习必备课程',
-      tag: ['深度', '学习'],
-      author: '路雪',
-      img: './article.jpg'
-    },
-    articles: {
-      edges: [],
-      pageInfo: {
-        endCursor: '',
-        hasNextPage: true
-      }
-    },
-    userInfo: {}
+    
   },
 
   onLoad: function () {
-    var self = this;
-    app.getUserInfo(function (userInfo) {
-      self.setData({
-        userInfo: userInfo
-      })
-    }); 
-    // wx.getSystemInfo({
-    //   success: function (res) {
-    //     self.setData({
-    //       scrollHeight: res.windowHeight
-    //     });
-    //   }
-    // });
+    console.log('onLoad')
+    var that = this
+    WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
+    WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
   },
+
   onShow: function () {
     // getData(this);
   },
-
-  // 下拉刷新
-  onPullDownRefresh: function () {
-    console.log("下拉刷新");
-    getData(this,true, false);
+  wxSearchFn: function (e) {
+    var that = this;
+    // 展示搜索结果
+    console.log("结果",e)
+    WxSearch.wxSearchAddHisKey(that);
   },
+  wxSearchInput: function (e) {
+    var that = this;
+    // 发送请求
+    // 显示相关词
+    console.log("显示关键词")
+    WxSearch.initMindKeys(['weappdev.com', 'aaa', 'aaaaa', 'aaaa']);
 
-  onReachBottom: function() {
-    console.log("加载更多")
-    getData(this);
+    WxSearch.wxSearchInput(e, that);
+  },
+  wxSerchFocus: function (e) {
+    var that = this;
+    console.log("输入框得到焦点")
+    WxSearch.wxSearchFocus(e, that);
+  },
+  wxSearchBlur: function (e) {
+    var that = this;
+    console.log("输入框失去焦点")
+    WxSearch.wxSearchBlur(e, that);
+  },
+  wxSearchKeyTap: function (e) {
+    var that = this;
+    console.log("keytap", e)
+    WxSearch.wxSearchKeyTap(e, that);
+  },
+  wxSearchDeleteKey: function (e) {
+    var that = this;
+    console.log("删除某个历史")
+    WxSearch.wxSearchDeleteKey(e, that);
+  },
+  wxSearchDeleteAll: function (e) {
+    var that = this;
+    console.log("删除全部历史")
+    WxSearch.wxSearchDeleteAll(that);
+  },
+  wxSearchTap: function (e) {
+    var that = this;
+    console.log("点击相关词");
+    WxSearch.wxSearchHiddenPancel(that);
   }
 })

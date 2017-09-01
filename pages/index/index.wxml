@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view>
   <!-- <scroll-view scroll-y="true" enable-back-to-top="true" bindscrolltolower="fetchMore" style="height: {{scrollHeight}}px"> -->
-    <navigator class="article" url="">
+    <navigator class="article" url="/pages/article/article">
       <view class="article__cover"
         style="background-image: url(http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg)">
       </view>

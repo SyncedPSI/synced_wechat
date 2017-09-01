@@ -8,7 +8,7 @@ var getData = function(self, isAdd=true) {
   if (!pageInfo.hasNextPage) return;
 
   wx.request({
-    url: "https://easy-mock.com/mock/59a799074006183e48edf7e8/example/upload",
+    url: "localhost:3000/graphiql",
     method: "POST",
     data: {
       operationName: "ArticleList",
