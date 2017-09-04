@@ -1,4 +1,5 @@
-<!--index.wxml-->
+<import src="../../common/article.wxml"/>
+
 <view>
   <!-- <scroll-view scroll-y="true" enable-back-to-top="true" bindscrolltolower="fetchMore" style="height: {{scrollHeight}}px"> -->
     <navigator class="article" url="/pages/article/article">
@@ -14,24 +15,7 @@
       </view> 
     </navigator>
 
-    <view class="article-list">
-      <view class="article-inline" wx:for="{{articles.edges}}" wx:key="unique">
-        <navigator class="article-inline__cover-container" url="/pages/article/article?id={{item.node.id}}">
-          <view class="article-inline__cover"
-          style="background-image: url(http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg)"></view>
-        </navigator>
-        <view class="article-inline__info">
-          <view class="article__categories">
-            <text class="category__label" wx:for="{{item.node.categories}}" wx:for-item="category" wx:key="unique">{{category.title}}</text>
-          </view>
-          <navigator class="article-inline__title" url="/pages/article/article?id={{item.node.id}}">{{item.node.title}}</navigator>
-          <view class="article-inline__bottom">
-            <text>{{item.node.author.name}}</text>
-            <text>{{item.node.published_at}}</text>
-          </view>
-        </view>
-      </view>
-    </view> 
+    <template is="articleList" data="{{articles}}"/>
   <!-- </scroll-view> -->
 </view>
 

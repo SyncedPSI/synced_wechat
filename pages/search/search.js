@@ -49,6 +49,7 @@ var getData = function (self, keywords, isAdd = true) {
       }
 
       self.setData({ articles: articles });
+      wx.stopPullDownRefresh();
     },
     fail: function (err) {
       console.log(err);
