@@ -3,7 +3,7 @@
 var app = getApp()
 var WxSearch = require('../../lib/wxSearch/wxSearch.js')
 
-var getData = function (self, keywords) {
+var getData = function (self, keywords, isAdd = true) {
   const pageInfo = self.data.articles.pageInfo;
   if (!pageInfo.hasNextPage) return;
 
@@ -23,6 +23,7 @@ var getData = function (self, keywords) {
                       id
                       cover_image_url
                       title
+                      categories
                     }
                   }
                   pageInfo {
@@ -34,7 +35,7 @@ var getData = function (self, keywords) {
                 `,
       variables: {
         count: 8,
-        cursor: self.data.articles.pageInfo.endCursor,
+        cursor: isAdd ? self.data.articles.pageInfo.endCursor : '',
         keywords
       }
     },
@@ -42,15 +43,15 @@ var getData = function (self, keywords) {
       'content-type': 'application/json'
     },
     success: function (res) {
-      console.log(res)
       let articles = res.data.data.elastic_search;
-      articles.edges = articles.edges.concat(self.data.articles.edges);
+      if (isAdd) {
+        articles.edges = articles.edges.concat(self.data.articles.edges);
+      }
 
       self.setData({ articles: articles });
-      console.log(self.data.articles)
     },
     fail: function (err) {
-      console.log(err)
+      console.log(err);
     }
   })
 }
@@ -74,10 +75,13 @@ Page({
     WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
     WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
   },
+  onReachBottom: function () {
+    getData(this, this.data.wxSearchData.value);
+  },
   wxSearchFn: function (e) {
     var that = this;
     // 展示搜索结果
-    getData(that, that.data.wxSearchData.value);
+    getData(that, that.data.wxSearchData.value, false);
     WxSearch.wxSearchAddHisKey(that);
   },
   wxSearchInput: function (e) {

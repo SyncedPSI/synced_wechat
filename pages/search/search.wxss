@@ -1,2 +1,16 @@
 @import "../../lib/wxSearch/wxSearch.wxss";
 
+.wxSearch {
+  position: fixed;
+  margin-top: -1rpx;
+}
+
+.wxSearch-section {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 5rpx 10rpx 20rpx 10rpx;
+}
+.article-list {
+  margin-top: 2.4rem;
+}

@@ -44,7 +44,7 @@ var getData = function(self, hasPost=false, isAdd=true) {
                 `,
       variables: {
         count: 8,
-        cursor: self.data.articles.pageInfo.endCursor,
+        cursor: isAdd ? self.data.articles.pageInfo.endCursor : '',
         exclude_banners: true,
         withCategories: true,
         withContent: false
@@ -59,7 +59,7 @@ var getData = function(self, hasPost=false, isAdd=true) {
         articles.edges = articles.edges.concat(self.data.articles.edges);
       }
 
-      self.setData({ articles: articles })
+      self.setData({ articles: articles });
       wx.stopPullDownRefresh();
     },
     fail: function (err) {

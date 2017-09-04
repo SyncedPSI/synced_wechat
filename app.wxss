@@ -1,4 +1,8 @@
 /**app.wxss**/
+html {
+  font-size: 10px;
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -8,3 +12,67 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.article .article__title {
+  font-size: 1.2rem;
+  margin: .4rem 0;
+}
+
+.article .article__info {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0px;
+  background: linear-gradient(to top, rgba(0, 0, 0, .8), transparent);
+  color: #FFFFFF;
+  padding: .8rem;
+}
+.article__categories {
+  margin-bottom: .5rem;
+}
+
+.article__author, .article__date {
+  font-size: .6rem;
+}
+
+.category__label, .tag {
+  display: inline-block;
+  margin-right: 5px;
+  background-color: #D80000;
+  color: #FFFFFF;
+  padding: 0 5px;
+  font-size: 0.6rem;
+  line-height: 1.6;
+}
+
+.article-inline {
+  display: flex;
+  margin-top: .2rem;
+  align-items: flex-start;
+}
+.article-inline__cover-container, .article-inline__info {
+    width: 50%;
+}
+
+.article-inline__cover {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 62%;
+  background-position: center;
+  background-size: cover;
+}
+
+.article-inline__title {
+  font-size: 1rem;
+}
+.article-inline__info {
+  padding: 0 .5rem;
+}
+
+.article-inline__bottom {
+  font-size: .6rem;
+  margin-top: .2rem;
+  display: flex;
+  justify-content: space-between;
+}
