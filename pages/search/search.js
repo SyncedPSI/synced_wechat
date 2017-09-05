@@ -45,7 +45,7 @@ var getData = function (self, keywords, isAdd = true) {
     success: function (res) {
       let articles = res.data.data.elastic_search;
       if (isAdd) {
-        articles.edges = articles.edges.concat(self.data.articles.edges);
+        articles.edges = self.data.articles.edges.concat(articles.edges);
       }
 
       self.setData({ articles: articles });
@@ -67,7 +67,8 @@ Page({
     },
     wxSearchData: {
       value: ''
-    }
+    },
+    isNotNode: true
   },
 
   onLoad: function () {

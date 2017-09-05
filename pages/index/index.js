@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
-var getData = function(self, hasPost=false, isAdd=true) {
+var getData = function(self, isAdd=true) {
   const pageInfo = self.data.articles.pageInfo;
   if (!pageInfo.hasNextPage) return;
 
@@ -56,7 +56,7 @@ var getData = function(self, hasPost=false, isAdd=true) {
     success: function (res) {
       let articles = res.data.data.articles;
       if (isAdd) {
-        articles.edges = articles.edges.concat(self.data.articles.edges);
+        articles.edges = self.data.articles.edges.concat(articles.edges);
       }
 
       self.setData({ articles: articles });
@@ -106,7 +106,7 @@ Page({
 
   // 下拉刷新
   onPullDownRefresh: function () {
-    getData(this,true, false);
+    getData(this, false);
   },
 
   onReachBottom: function() {

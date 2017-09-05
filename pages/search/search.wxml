@@ -1,4 +1,3 @@
-
 <import src="../../lib/wxSearch/wxSearch.wxml"/>
 <import src="../../common/article.wxml"/>
 
@@ -8,5 +7,6 @@
        <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">搜索</button>
    </view>
 </view>
-<template is="articleList" data="{{articles}}"/>
+
+<template is="articleList" data="{{articles, isNotNode}}"/>
 <template is="wxSearch" data="{{wxSearchData}}"/>
