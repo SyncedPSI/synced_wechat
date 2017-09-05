@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var app = getApp()
 var WxSearch = require('../../lib/wxSearch/wxSearch.js')
 
@@ -73,18 +71,16 @@ Page({
 
   onLoad: function () {
     console.log('onLoad')
-    var that = this
-    WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
+    var that = this;
+    WxSearch.init(that, 42, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
     WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
-  },
-  onReachBottom: function () {
-    getData(this, this.data.wxSearchData.value);
   },
   wxSearchFn: function (e) {
     var that = this;
-    // 展示搜索结果
-    getData(that, that.data.wxSearchData.value, false);
     WxSearch.wxSearchAddHisKey(that);
+    wx.navigateTo({
+      url: `/pages/result/result?keywords=${that.data.wxSearchData.value}`
+    })
   },
   wxSearchInput: function (e) {
     var that = this;

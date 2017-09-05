@@ -1,0 +1,3 @@
+<import src="../../common/article.wxml"/>
+
+<template is="articleList" data="{{articles, isNotNode}}"/>

@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/my/my",
     "pages/article/article",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/result/result"
   ],
   "window":{
     "backgroundTextStyle":"dark",

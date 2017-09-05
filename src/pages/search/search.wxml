@@ -1,5 +1,4 @@
 <import src="../../lib/wxSearch/wxSearch.wxml"/>
-<import src="../../common/article.wxml"/>
 
 <view class="wxSearch-section">
    <view class="wxSearch-pancel">
@@ -8,5 +7,4 @@
    </view>
 </view>
 
-<template is="articleList" data="{{articles, isNotNode}}"/>
 <template is="wxSearch" data="{{wxSearchData}}"/>
