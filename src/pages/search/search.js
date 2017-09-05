@@ -78,9 +78,12 @@ Page({
   wxSearchFn: function (e) {
     var that = this;
     WxSearch.wxSearchAddHisKey(that);
-    wx.navigateTo({
-      url: `/pages/result/result?keywords=${that.data.wxSearchData.value}`
-    })
+    var keywords = that.data.wxSearchData.value;
+    if (keywords && keywords !== '') {
+      wx.navigateTo({
+        url: `/pages/result/result?keywords=${keywords}`
+      });
+    }
   },
   wxSearchInput: function (e) {
     var that = this;

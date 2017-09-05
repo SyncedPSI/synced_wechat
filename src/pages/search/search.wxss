@@ -1,12 +1,8 @@
 @import "../../lib/wxSearch/wxSearch.wxss";
 
-.wxSearch {
-  position: fixed;
-}
-
-.wxSearch-section {
-  position: fixed;
-  top: 0;
-  width: 100%;
+.wxSearch-pancel {
   padding: 5rpx 10rpx 20rpx 10rpx;
+}
+button.wxSearch-button {
+  padding-right: 0;
 }
