@@ -85,6 +85,10 @@ html {
   font-size: .8rem;
 }
 
+.comment-container {
+  padding-left: 10rpx;
+}
+
 .comment-item {
   border-top: 1px solid #797979;
 }

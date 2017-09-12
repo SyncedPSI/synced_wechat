@@ -12,7 +12,7 @@
 </template>
 
 <template name="comment">
-  <view class="comment__container">
+  <view class="comment-container">
     <view class="comment__title">{{total}}条评论</view> 
     <view class="comment-list" wx:for="{{list}}" wx:key="{{id}}">
       <view class="comment-item">

@@ -13,5 +13,10 @@
     <template is="wxParse" data="{{wxParseData:article_content.nodes}}"/>
   </view>
 
+  <view class="like-container" bindtap="likeTap">
+    <image src="{{isLike ? '/images/like-active.png' : '/images/like.png' }}"></image>
+    <text>2000</text>
+  </view>
+
   <template is="comment" data="{{...comment}}"/>
 </view>

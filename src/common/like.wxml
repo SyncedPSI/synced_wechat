@@ -1,5 +1,0 @@
-<template name="like">
-  <view class="like-container">
-    点赞    
-  </view>
-</template>

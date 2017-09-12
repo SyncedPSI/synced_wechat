@@ -72,7 +72,8 @@ Page({
           ]
         }
       ]
-    }
+    },
+    isLike: false
   },
 
   onLoad: function () {
@@ -86,6 +87,16 @@ Page({
 
   onShow: function () {
     getData(this);
+  },
+
+  likeTap: function () {
+    if (this.data.isLike) {
+      // 发送请求
+      this.setData({isLike: false});
+    } else {
+      // 发送请求
+      this.setData({ isLike: true });
+    }
   },
 
   onShareAppMessage: function (res) {
