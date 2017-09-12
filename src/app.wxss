@@ -79,6 +79,49 @@ html {
 }
 
 .no-more {
-  color: #282828;
+  color: #797979;
   text-align: center;
+  margin: 30rpx 0;
+  font-size: .8rem;
+}
+
+.comment-item {
+  border-top: 1px solid #797979;
+}
+
+.comment-item:first-child {
+  border-top: none;
+}
+
+.comment-inline {
+  display: flex;
+  color: #282828;
+}
+
+.comment__title {
+  margin: 20rpx 0;
+}
+
+.comment__avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.comment__author {
+
+}
+
+.comment__create {
+  font-size: .6rem;
+  margin-top: .2rem;
+}
+
+.comment__description {
+  margin: 20rpx 0;
+}
+
+.comment-response {
+  margin-left: 100rpx;
 }

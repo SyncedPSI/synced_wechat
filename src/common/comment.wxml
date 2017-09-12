@@ -1,5 +1,30 @@
+
+
+<template name="commentInline">
+  <view class="comment-inline">
+    <image class="comment__avatar" src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+    <view>
+      <view class="comment__author">{{item.name}}</view>
+      <view class="comment__create">{{item.published_at}}</view>
+      <view class="comment__description">{{item.content}}</view>
+    </view>
+  </view>
+</template>
+
 <template name="comment">
-  <view class="comment-container">
-    评论框    
+  <view class="comment__container">
+    <view class="comment__title">{{total}}条评论</view> 
+    <view class="comment-list" wx:for="{{list}}" wx:key="{{id}}">
+      <view class="comment-item">
+        <template is="commentInline" data="{{item}}" />
+        <view class="comment-response" wx:for="{{item.res}}" wx:key="{{id}}">
+          <template is="commentInline" data="{{item}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="no-more" hidden="{{has_more}}">
+    没有更多啦
   </view>
 </template>

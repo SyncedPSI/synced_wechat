@@ -46,7 +46,33 @@ var getData = function(self, isAdd=true) {
 }
 Page({
   data: {
-    article: {}
+    article: {},
+    comment: {
+      has_more: false,
+      total: 1,
+      list: [
+        { 
+          id: 1,
+          name: 'wukong',
+          published_at: '2017年7月30日',
+          content: '这篇文章很好很好很好很好',
+          res: [
+            { 
+              id: 2,
+              name: 'wukong',
+              published_at: '2017年7月30日',
+              content: '这是一条回复',
+            },
+            {
+              id: 3,
+              name: 'wukong',
+              published_at: '2017年7月30日',
+              content: '这是一条回复',
+            }
+          ]
+        }
+      ]
+    }
   },
 
   onLoad: function () {

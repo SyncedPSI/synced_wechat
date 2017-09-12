@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <import src="../../lib/wxParse/wxParse.wxml"/>
+<import src="../../common/comment.wxml"/>
 
 <view class="article-detail">
   <view class='article-detail__title'>{{article.title}}</view>
@@ -11,5 +12,6 @@
   <view class="article-detail__content">
     <template is="wxParse" data="{{wxParseData:article_content.nodes}}"/>
   </view>
-</view>
 
+  <template is="comment" data="{{...comment}}"/>
+</view>
