@@ -1,3 +1,5 @@
 <import src="../../common/article.wxml"/>
+<import src="../../common/no_more.wxml"/>
 
 <template is="articleList" data="{{articles, isNotNode}}"/>
+<template is="noMore" data="{{has_more}}"/>

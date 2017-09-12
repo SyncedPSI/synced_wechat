@@ -8,6 +8,10 @@
   padding: 0 10rpx;
 }
 
+.article-detail__content {
+  padding: 30rpx 0;
+}
+
 .article-detail__title {
   font-size: 1.8rem;
 }

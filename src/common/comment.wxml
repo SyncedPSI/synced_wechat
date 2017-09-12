@@ -1,0 +1,5 @@
+<template name="comment">
+  <view class="comment-container">
+    评论框    
+  </view>
+</template>

@@ -57,7 +57,28 @@ Page({
       })
     });
   },
+
   onShow: function () {
     getData(this);
+  },
+
+  onShareAppMessage: function (res) {
+    const self = this; 
+
+    // 来自页面内转发按钮
+    if (res.from === 'button') {
+      console.log(res.target)
+    }
+
+    return {
+      title: self.data.article.title,
+      path: `/page/article?id=${self.options.id}`,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

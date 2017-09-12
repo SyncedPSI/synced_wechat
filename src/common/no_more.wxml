@@ -1,0 +1,5 @@
+<template name="noMore">
+  <view class="no-more" hidden="{{has_more}}">
+    没有更多啦
+  </view>
+</template>

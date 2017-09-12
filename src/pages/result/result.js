@@ -1,11 +1,11 @@
-
 var app = getApp()
 var WxSearch = require('../../lib/wxSearch/wxSearch.js')
 
 var getData = function (self) {
   const pageInfo = self.data.articles.pageInfo;
-  if (!pageInfo.hasNextPage) return;
-  console.log(self)
+  if (!self.data.has_more) { 
+    return;
+  };
 
   wx.request({
     url: "https://jiqizhixin.com/graphql",
@@ -45,8 +45,12 @@ var getData = function (self) {
     success: function (res) {
       let articles = res.data.data.elastic_search;
       articles.edges = self.data.articles.edges.concat(articles.edges);
-
       self.setData({ articles: articles });
+
+      if (!self.data.articles.pageInfo.hasNextPage) {
+        self.setData({ has_more: false });
+      }
+
       wx.stopPullDownRefresh();
     },
     fail: function (err) {
@@ -66,7 +70,8 @@ Page({
     wxSearchData: {
       value: ''
     },
-    isNotNode: true
+    isNotNode: true,
+    has_more: true
   },
 
   onLoad: function () {

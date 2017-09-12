@@ -1,4 +1,4 @@
-/**app.wxss**/
+
 html {
   font-size: 10px;
 }
@@ -11,7 +11,8 @@ html {
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+
 .article .article__title {
   font-size: 1.2rem;
   margin: .4rem 0;
@@ -75,4 +76,9 @@ html {
   margin-top: .2rem;
   display: flex;
   justify-content: space-between;
+}
+
+.no-more {
+  color: #282828;
+  text-align: center;
 }
