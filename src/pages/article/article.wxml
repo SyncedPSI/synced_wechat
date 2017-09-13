@@ -15,19 +15,8 @@
 
   <view class="like-container" bindtap="likeTap">
     <image src="{{isLike ? '/images/like-active.png' : '/images/like.png' }}"></image>
-    <text>2000</text>
+    <text>{{likeCount}}</text>
   </view>
 
-  <view class="comment-input {{comment_focus ? 'comment-focus' : ''}}">
-    <view class="comment-input-body">
-      <image src="/images/my.png"></image>
-      <textarea bindfocus="inputFocus" value="{{comment_value}}" placeholder="你想说点什么" />
-    </view>
-    <view class="commment-input-footer" hidden="{{!comment_focus}}">
-      <button size="mini" bindtap="inputClose">关闭</button>
-      <button size="mini" bindtap="submitComment">提交评论</button>
-    </view>
-  </view>
-
-  <template is="comment" data="{{...comment}}"/>
+  <template is="comment" data="{{...comment, comment_focus, comment_value}}"/>
 </view>

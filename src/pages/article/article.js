@@ -47,7 +47,6 @@ var getData = function(self, isAdd=true) {
 Page({
   data: {
     article: {},
-    comment_value:'',
     comment_focus: false,
     comment: {
       has_more: false,
@@ -75,7 +74,8 @@ Page({
         }
       ]
     },
-    isLike: false
+    isLike: false,
+    likeCount: 2000
   },
 
   onLoad: function () {
@@ -92,12 +92,16 @@ Page({
   },
 
   likeTap: function () {
+    const count = this.data.likeCount;
+
     if (this.data.isLike) {
       // 发送请求
-      this.setData({isLike: false});
+      this.setData({ isLike: false });
+      this.setData({ likeCount: count - 1 });
     } else {
       // 发送请求
       this.setData({ isLike: true });
+      this.setData({ likeCount: count + 1 });
     }
   },
 
@@ -128,12 +132,12 @@ Page({
   inputClose: function() {
     this.setData({ comment_focus: false });
   },
-  submitComment : function() {
+  submitComment : function(e) {
     // 提交评论
+    console.log("comment content", e.detail.value.input);
     this.setData({ 
       comment_focus: false,
       comment_value: ''
     });
-    console.log("submit comment")
   }
 })

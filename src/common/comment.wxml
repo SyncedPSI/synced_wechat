@@ -12,17 +12,30 @@
 </template>
 
 <template name="comment">
-  <view class="comment-container">
-    <view class="comment__title">{{total}}条评论</view> 
-    <view class="comment-list" wx:for="{{list}}" wx:key="{{id}}">
-      <view class="comment-item">
-        <template is="commentInline" data="{{item}}" />
-        <view class="comment-response" wx:for="{{item.res}}" wx:key="{{id}}">
+  <form bindsubmit="submitComment">
+    <view class="comment-container">
+      <view class="comment-input {{comment_focus ? 'comment-focus' : ''}}">
+        <view class="comment-input-body">
+          <image src="/images/my.png"></image>
+          <textarea bindfocus="inputFocus" value="{{comment_value}}" name="input" placeholder="你想说点什么" />
+        </view>
+        <view class="commment-input-footer" hidden="{{!comment_focus}}">
+          <button size="mini" bindtap="inputClose">关闭</button>
+          <button size="mini"  type="primary" form-type="submit">提交评论</button>
+        </view>
+      </view>
+
+      <view class="comment__title">{{total}}条评论</view> 
+      <view class="comment-list" wx:for="{{list}}" wx:key="{{id}}">
+        <view class="comment-item">
           <template is="commentInline" data="{{item}}" />
+          <view class="comment-response" wx:for="{{item.res}}" wx:key="{{id}}">
+            <template is="commentInline" data="{{item}}" />
+          </view>
         </view>
       </view>
     </view>
-  </view>
+  </form>
 
   <view class="no-more" hidden="{{has_more}}">
     没有更多啦
