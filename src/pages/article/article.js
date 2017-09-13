@@ -47,6 +47,8 @@ var getData = function(self, isAdd=true) {
 Page({
   data: {
     article: {},
+    comment_value:'',
+    comment_focus: false,
     comment: {
       has_more: false,
       total: 1,
@@ -117,5 +119,21 @@ Page({
         // 转发失败
       }
     }
+  },
+
+  inputFocus: function() {
+    this.setData({ comment_focus: true });
+  },
+
+  inputClose: function() {
+    this.setData({ comment_focus: false });
+  },
+  submitComment : function() {
+    // 提交评论
+    this.setData({ 
+      comment_focus: false,
+      comment_value: ''
+    });
+    console.log("submit comment")
   }
 })

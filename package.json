@@ -1,0 +1,24 @@
+{
+  "name": "wsynced",
+  "version": "1.0.0",
+  "description": "wx",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wx"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "file-loader": "^0.11.2",
+    "webpack": "2.3.2",
+    "wxapp-webpack-plugin": "^0.0.0-12",
+    "wxml-loader": "^0.0.0-6"
+  }
+}
